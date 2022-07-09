@@ -3,34 +3,33 @@ package StringTestPrac;
 import java.util.Scanner;
 
 public class FindAlphabetNum {
+	
+	public int Solution(String str, char c) {
+		
+		int ans = 0;
+		str = str.toUpperCase();
+		c = Character.toUpperCase(c);
+	
+		for(char x : str.toCharArray()) {
+			if(x == c)	ans++;
+		}
+		
+//		for(int i=0; i<str.length(); i++) {
+//			if(c == str.charAt(i))	ans++;
+//		}
+//		
+		return ans;
+	}
 
 	public static void main(String[] args) {
+		FindAlphabetNum test = new FindAlphabetNum();
+		
 		Scanner scanner = new Scanner(System.in);
-		int ans = 0;
+	
+		String str = scanner.next();
+		char c = scanner.next().charAt(0);
 		
-		System.out.print("문자열을 입력하세요: ");
-		String sentence = scanner.next();
-		
-		System.out.print("문자를 입력하세요: ");
-		String strToChar = scanner.next();
-		
-		char[] str = new char[101];
-		char haveToFindAlphabet;
-		
-		int length = 0;
-		length = sentence.length();
-		
-		for(int i=0; i<length; i++) {
-			str[i] = sentence.charAt(i);
-		}
-		
-		haveToFindAlphabet = strToChar.charAt(0);
-		
-		for(int j = 0; j < length; j++) {
-			if(str[j] == haveToFindAlphabet || str[j] == (haveToFindAlphabet + 32) || str[j] == (haveToFindAlphabet -32))	ans++;
-		}
-    System.out.print(ans);
-
+		System.out.print(test.Solution(str, c));
 	}
 
 }
