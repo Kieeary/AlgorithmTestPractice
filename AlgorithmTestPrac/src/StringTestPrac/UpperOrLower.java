@@ -4,23 +4,24 @@ import java.util.Scanner;
 
 public class UpperOrLower {
 	
-public void Solution(String res) {
+public String Solution(String res) {
 		
-		String str = res;
-		int size = str.length();
-		
-		char ans[] = str.toCharArray();
-		
-		for(int i = 0; i<size; i++) {
-			if(ans[i] >= 'a') {
-				ans[i] = Character.toUpperCase(ans[i]);
-			} else {
-				ans[i] = Character.toLowerCase(ans[i]);
-			}
-		}
-		System.out.print(ans);
-	}
+		String ans = ""; 
 
+		for(char c : res.toCharArray()) {
+			if(c >= 65 && c <=90) {
+				ans = ans + (char)(c+32);
+			} else {
+				ans = ans + (char)(c-32);
+			}
+//			if(Character.isLowerCase(c)) {
+//				ans = ans + Character.toUpperCase(c);
+//			} else {
+//				ans = ans + Character.toLowerCase(c);
+//			}
+		}
+		return ans;
+	}
 	public static void main(String[] args) {
 		
 		UpperOrLower main = new UpperOrLower();
@@ -29,7 +30,7 @@ public void Solution(String res) {
 		System.out.println("문자열 입력: ");
 		String str = sc.next();
 		
-		main.Solution(str);
+	System.out.print(main.Solution(str));
 		
 	}
 }
