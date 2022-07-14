@@ -3,38 +3,41 @@ package StringTestPrac;
 import java.util.Scanner;
 
 public class SpecificWordReverse {
-
-	public static void main(String[] args) {
-
-		Scanner sc = new Scanner(System.in);
-
-		String str = sc.next();
-
+  
+  public String Solution(String str){
+    
+    	int l = 0;
 		int r = str.length() - 1;
+    	
+    	String ans = "";
 
 		char[] arr = str.toCharArray();
 
-		for (int i = 0; i < r; i++) {
-			if ((arr[i] >= 'a' && arr[i] <= 'z') || (arr[i] >= 'A' && arr[i] <= 'Z')) {
-				while (r >= i) {
-					if ((arr[r] >= 'a' && arr[r] <= 'z') || (arr[r] >= 'A' && arr[r] <= 'Z')) {
-						char tmp = arr[i];
-						arr[i] = arr[r];
-						arr[r] = tmp;
-						r--;
-						break;
-					} else {
-						r--;
-					}
-				}
+		while(l<r) {
+			if(!Character.isAlphabetic(arr[l]))	l++;
+			else if(!Character.isAlphabetic(arr[r]))	r--;
+			else {
+				char tmp = arr[l];
+				arr[l] = arr[r];
+				arr[r] = tmp;
+				l++;
+				r--;
 			}
 		}
+		
+		ans = String.valueOf(arr);
 
-		for (int i = 0; i < str.length(); i++) {
-			String ans = Character.toString(arr[i]);
+    	return ans;
+  }
 
-			System.out.print(ans);
-		}
+	public static void main(String[] args) {
+
+		SpecificWordReverse main = new SpecificWordReverse();
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+      
+      	System.out.println(main.Solution(str));
+
 	}
 
 }
