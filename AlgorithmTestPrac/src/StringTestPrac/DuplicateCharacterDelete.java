@@ -9,28 +9,14 @@ public class DuplicateCharacterDelete {
 	public String Solution(String str) {
 
 		String newStr = "";
-
-		int flag = 0;
-
-		char[] strTochar = str.toCharArray();
-
-		newStr = newStr + strTochar[0];
-
-		for (int i = 1; i < strTochar.length; i++) {
-			for (int j = 0; j < newStr.length(); j++) {
-				if (strTochar[i] == newStr.charAt(j)) {
-					flag = 1;
-				}
+		
+		for(int i = 0; i<str.length(); i++) {
+			if(i == str.indexOf(str.charAt(i))) {
+				newStr = newStr + str.charAt(i);
 			}
-
-			if (flag == 0) {
-				newStr += strTochar[i];
-			}
-			flag = 0;
 		}
-
-		return newStr;
-
+	
+	return newStr;
 	}
 
 	public static void main(String[] args) {
