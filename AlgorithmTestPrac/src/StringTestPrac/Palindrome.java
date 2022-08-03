@@ -9,15 +9,12 @@ public class Palindrome {
 	public String Solution(String str) {
 		
 		str = str.toLowerCase();
+		String answer = "NO";
 		
-		int length = str.length()-1;
-		String answer = "YES";
+		String reverseStr = new StringBuilder(str).reverse().toString();
 		
-		for(int i = 0; i < str.length()/2; i++) {
-			if(str.charAt(i) != str.charAt(length-i)) {
-				answer = "NO";
-				return answer;
-			} 
+		if(str.equals(reverseStr)) {
+			answer = "YES";
 		}
 		return answer;
 	}
