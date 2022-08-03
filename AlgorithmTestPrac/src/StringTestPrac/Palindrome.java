@@ -8,21 +8,18 @@ public class Palindrome {
 
 	public String Solution(String str) {
 		
-		String lowerStr = str.toLowerCase();
-		System.out.print(lowerStr);
+		str = str.toLowerCase();
 		
 		int length = str.length()-1;
-		int flag = 0;
+		String answer = "YES";
 		
 		for(int i = 0; i < str.length()/2; i++) {
-			if(lowerStr.charAt(i) != lowerStr.charAt(length-i)) {
-				return "NO";
-			} else {
-				flag = 1;
-			}
+			if(str.charAt(i) != str.charAt(length-i)) {
+				answer = "NO";
+				return answer;
+			} 
 		}
-		
-		return "YES";
+		return answer;
 	}
 	
 	public static void main(String[] args) {
