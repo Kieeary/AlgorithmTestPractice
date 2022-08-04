@@ -4,39 +4,48 @@ import java.util.Scanner;
 
 public class Shortestlength {
 
-	public void Solution(String str) {
+	public int[] Solution(String str, char c) {
 
-		String[] arr = str.split(" ");
-		String st = arr[0];
+		int[] arr = new int[str.length()];
 
-		char ch = arr[1].charAt(0);
-
-		int min = Integer.MAX_VALUE;
-
-		for (int i = 0; i < st.length(); i++) {
-			for (int j = 0; j < st.length(); j++) {
-				if (st.charAt(j) == ch) {
-					int check = j - i;
-					if (check < 0)
-						check = 0 - check;
-
-					if (check < min)
-						min = check;
-				} else
-					continue;
+		int min = 1000;
+		
+		for(int i =0; i<str.length(); i++) {
+			if(str.charAt(i) == c) {
+				min = 0;
+				arr[i] = min;
+			} else {
+				min++;
+				arr[i] = min;
 			}
-			System.out.print(min + " ");
-
-			min = Integer.MAX_VALUE;
 		}
+		
+		min = 1000;
+		
+		for(int i = str.length()-1; i >= 0; i--) {
+			if(str.charAt(i) == c) {
+				min = 0;
+			} else {
+				min++;
+				arr[i] = Math.min(arr[i], min);
+			}
+		}
+		return arr;
 	}
 
 	public static void main(String[] args) {
 
+		Shortestlength main = new Shortestlength();
+		
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("문자열과 문자를 입력하세요: ");
-		String str = sc.nextLine();
+		String str = sc.next();
+		char c = sc.next().charAt(0);
+		
+		for(int x : main.Solution(str, c)) {
+			System.out.print(x + " ");
+		}
 
 	}
 }
