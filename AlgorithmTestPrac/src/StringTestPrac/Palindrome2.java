@@ -8,31 +8,21 @@ public class Palindrome2 {
 
 	public String Solution(String str) {
 
-		str = str.toLowerCase();
 		String answer = "YES";
-		int index = str.length() - 1;
-
-		int k = 0;
-
-		for (int i = 0; i < str.length(); i++) {
-			if (Character.isAlphabetic(str.charAt(i))) {
-				while (k < str.length()) {
-					if (!Character.isAlphabetic(str.charAt(index - k))) {
-						k++;
-						continue;
-					} else if (str.charAt(i) == str.charAt(index - k)) {
-						k++;
-						break;
-					} else if (str.charAt(i) != str.charAt(index - k)) {
-						k++;
-						answer = "NO";
-						return answer;
-					}
-
-				}
-			}
+		
+		str = str.toLowerCase();
+		str = str.replaceAll("[^a-z]", "");
+		
+		
+		String newStr = new StringBuilder(str).reverse().toString();
+		
+		if(str.equals(newStr)) {
+			return answer;
 		}
-		return answer;
+		else {
+			answer = "NO";
+			return answer;
+		}
 	}
 
 	public static void main(String[] args) {
