@@ -8,21 +8,19 @@ public class StringCompress {
 
 		String newStr = "";
 
-		newStr = newStr + str.charAt(0);
+		str = str + " ";
+		
 		int num = 1;
 
-		for (int i = 1; i < str.length(); i++) {
-			if (str.charAt(i - 1) != str.charAt(i)) {
-				if (num != 1) {
-					newStr = newStr + num;
-					num = 1;
-				}
+		for (int i = 0; i < str.length()-1; i++) {
+			if (str.charAt(i) != str.charAt(i+1)) {
 				newStr = newStr + str.charAt(i);
+				if(num > 1)	newStr = newStr + String.valueOf(num);
+				
+				num = 1;
 
 			} else {
 				num++;
-				if (i == str.length() - 1)
-					newStr = newStr + num;
 			}
 		}
 		return newStr;
