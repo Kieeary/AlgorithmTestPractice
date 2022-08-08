@@ -6,20 +6,16 @@ import java.util.Scanner;
 public class LookingStudent {
 
 	public int Solution(int num, int[] arr) {
-
-		ArrayList<Integer> ans = new ArrayList<>();
+		
+		int answer = 1;
 		int max = arr[0];
 
-		ans.add(arr[0]);
-
 		for (int i = 1; i < num; i++) {
-			if (arr[i - 1] < arr[i] && arr[i] > max) {
-				ans.add(arr[i]);
+			if (arr[i] > max) {
 				max = arr[i];
+				answer++;
 			}
 		}
-
-		int answer = ans.size();
 		return answer;
 	}
 
@@ -29,6 +25,7 @@ public class LookingStudent {
 
 		Scanner sc = new Scanner(System.in);
 
+		System.out.print("문자열 입력:");
 		int num = sc.nextInt();
 		int[] arr = new int[num];
 
