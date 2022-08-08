@@ -1,18 +1,22 @@
 package Array;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BiggerNumber {
 	
-	public void Solution(int num, int[] arr) {
+	public ArrayList<Integer> Solution(int num, int[] arr) {
 		
-		System.out.print(arr[0] + " ");
+		ArrayList<Integer> answer = new ArrayList<>();
+		
+		answer.add(arr[0]);
 		
 		for(int i =1; i<num; i++) {
-			if(arr[i-1] <arr[i])	System.out.print(arr[i] + " ");
+			if(arr[i-1] <arr[i])	answer.add(arr[i]);
 			
 			else continue;
-		} 
+		}
+		return answer;
 	}
 
 	public static void main(String[] args) {
@@ -28,7 +32,9 @@ public class BiggerNumber {
 			arr[i] = sc.nextInt();
 		}
 		
-		main.Solution(num, arr);
+		for(int i : main.Solution(num, arr)) {
+			System.out.print(i + " ");
+		}
 		
 	}
 
