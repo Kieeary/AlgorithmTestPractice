@@ -4,19 +4,21 @@ import java.util.Scanner;
 
 public class Fibonacci {
 
-	public int[] Solution(int num) {
+	public void Solution(int num) {
 
-		int arr[] = new int[num];
-
-		arr[0] = 1;
-		arr[1] = 1;
-
-		for (int i = 2; i < num; i++) {
-			arr[i] = arr[i - 2] + arr[i - 1];
+		int a = 1;
+		int b = 1;
+		
+		System.out.print(a + " "+ b + " ");
+		
+		for(int i = 2; i<num; i++) {
+			int c = a+b;
+			
+			System.out.print(c + " ");
+			
+			a = b;
+			b = c;
 		}
-
-		return arr;
-
 	}
 
 	public static void main(String[] args) {
@@ -27,9 +29,7 @@ public class Fibonacci {
 
 		System.out.print("입력:");
 		int num = sc.nextInt();
-
-		for (int i : main.Solution(num)) {
-			System.out.print(i + " ");
-		}
+		
+		main.Solution(num);
 	}
 }
