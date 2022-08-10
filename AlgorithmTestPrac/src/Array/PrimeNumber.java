@@ -7,26 +7,24 @@ public class PrimeNumber {
 
 	public int Solution(int num) {
 
-		ArrayList<Integer> answer = new ArrayList<Integer>();
-
-		answer.add(2);
+		int result = 0;
+		int[] answer = new int[num+1];
 		
-		if(num > 2) {
-			answer.add(3);
-			
-			for(int i = 4; i< num; i++) {
-				for(int j = 0; j<answer.size(); j++) {
-					if(i % answer.get(j) == 0)	break;
-					
-					else if(j == answer.size()-1) {
-						answer.add(i);
-						break;
-					}
+		for(int i = 0; i<=num; i++) {
+			answer[i] = 0;
+		}
+		
+		for(int i = 2; i<=num; i++) {
+			if(answer[i] == 0) {
+				result++;
+				for(int j = i; j<=num; j= j+i)  {
+					answer[j] = 1;
 				}
 			}
 		}
-
-		return answer.size();
+		
+		return result;
+		
 	}
 
 	public static void main(String[] args) {
@@ -34,11 +32,11 @@ public class PrimeNumber {
 		PrimeNumber main = new PrimeNumber();
 		Scanner sc = new Scanner(System.in);
 
+		System.out.print("입력: ");
 		int num = sc.nextInt();
 
 		System.out.print(main.Solution(num));
 		
 	}
-
 
 }
