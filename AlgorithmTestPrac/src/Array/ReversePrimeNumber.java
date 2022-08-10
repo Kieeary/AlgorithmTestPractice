@@ -27,12 +27,6 @@ public class ReversePrimeNumber {
 		for(int i =0; i<num; i++) {
 			revInt[i] = Integer.parseInt(revArr[i]);
 		}
-		
-		for(int i = 0; i<num; i++) {
-			System.out.println(revInt[i] + " ");
-		}
-		
-		
 
 		for (int i = 0; i < num; i++) {
 			for (int j = 2; j <= revInt[i]; j++) {
