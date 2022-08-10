@@ -29,16 +29,16 @@ public class ReversePrimeNumber {
 		}
 
 		for (int i = 0; i < num; i++) {
-			for (int j = 2; j <= revInt[i]; j++) {
+			if(revInt[i] == 2 || revInt[i] == 3) {
+				answer.add(revInt[i]);
+				continue;
+			}
+			for (int j = 2; j <= Math.sqrt(revInt[i]); j++) {
 				if(revInt[i] == 1)	break;
-				else if(revInt[i] == 2) {
-					answer.add(revInt[i]);
-					break;
-				}
 				else if (revInt[i] % j == 0)
 					break;
 				else {
-					if(j == revInt[i] - 1) {
+					if(j == (int)Math.sqrt(revInt[i])) {
 					answer.add(revInt[i]);
 					}
 				}
