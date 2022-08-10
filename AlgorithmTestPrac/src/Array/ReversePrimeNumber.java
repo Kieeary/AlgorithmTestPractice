@@ -7,41 +7,44 @@ public class ReversePrimeNumber {
 
 	static Scanner sc = new Scanner(System.in);
 
-	public ArrayList<Integer> Solution(int num, String[] arr) {
+	public boolean isPrimeNumber(int reverse) {
+
+		if (reverse == 1)
+			return false;
+
+		for (int j = 2; j < reverse; j++) {
+			if (reverse % j == 0)
+				return false;
+		}
+		
+		return true;
+
+	}
+
+	public ArrayList<Integer> Solution(int num, int[] arr) {
 
 		ArrayList<Integer> answer = new ArrayList<Integer>();
 
-		String[] revArr = new String[num];
-		int[] revInt = new int[num];
-		String k = "";
+		int[] reverse = new int[num];
 
-		for(int i=0; i<num; i++) {
-			for(int index = arr[i].length()-1; index >= 0; index--) {
-				k += arr[i].charAt(index);
-				
+		for (int i = 0; i < num; i++) {
+
+			int t = 0;
+			int tmp = arr[i];
+			int res = 0;
+
+			while (tmp > 0) {
+				t = tmp % 10; // 일의 자리 숫자만 남음
+				res = res * 10 + t; // 일의 자리 숫자를 더함
+				tmp = tmp / 10; // 일의 자리를 제외하고 새로운 tmp 정의
 			}
-			revArr[i] = k;
-			k = "";
-		}
-	
-		for(int i =0; i<num; i++) {
-			revInt[i] = Integer.parseInt(revArr[i]);
+
+			reverse[i] = res;
 		}
 
 		for (int i = 0; i < num; i++) {
-			if(revInt[i] == 2 || revInt[i] == 3) {
-				answer.add(revInt[i]);
-				continue;
-			}
-			for (int j = 2; j <= Math.sqrt(revInt[i]); j++) {
-				if(revInt[i] == 1)	break;
-				else if (revInt[i] % j == 0)
-					break;
-				else {
-					if(j == (int)Math.sqrt(revInt[i])) {
-					answer.add(revInt[i]);
-					}
-				}
+			if (isPrimeNumber(reverse[i])) {
+				answer.add(reverse[i]);
 			}
 		}
 
@@ -52,17 +55,16 @@ public class ReversePrimeNumber {
 	public static void main(String[] args) {
 
 		ReversePrimeNumber main = new ReversePrimeNumber();
-		
-		System.out.print("입력 : " );
-		int num = sc.nextInt();
-		
-		String[] arr = new String[num];
-		for (int i = 0; i < num; i++) {
-			arr[i] = sc.next();
-		}
-		
 
-		for(int i : main.Solution(num, arr)) {
+		System.out.print("입력 : ");
+		int num = sc.nextInt();
+
+		int[] arr = new int[num];
+		for (int i = 0; i < num; i++) {
+			arr[i] = sc.nextInt();
+		}
+
+		for (int i : main.Solution(num, arr)) {
 			System.out.print(i + " ");
 		}
 	}
