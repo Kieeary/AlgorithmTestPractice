@@ -7,28 +7,17 @@ public class MyRank {
 	
 	public int[] Solution(int num, int[] arr) {
 		
-		ArrayList<Integer> rank = new ArrayList<>();
 		int[] answer = new int[num];
-
-		rank.add(arr[0]);
+		int rank = 1;
 		
-		for(int i = 1; i<num; i++) {
-			for(int j = 0; j < rank.size(); j++) {
-				if(rank.get(j) <= arr[i]) {
-					rank.add(j, arr[i]); 
-					break;
-				} 
-				else {
-					if(j == rank.size() - 1) {
-						rank.add(arr[i]);
-						break;
-					}
+		for(int i = 0; i<num; i++) {
+			for(int j = 0; j<num; j++) {
+				if(arr[i] < arr[j]) {
+					rank++;
 				}
 			}
-		}
-		
-		for(int i =0; i<num; i++) {
-			answer[i] = rank.indexOf(arr[i]) + 1;
+			answer[i] = rank;
+			rank = 1;
 		}
 		
 		return answer;
