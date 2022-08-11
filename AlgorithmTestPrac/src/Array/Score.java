@@ -10,18 +10,11 @@ public class Score {
 		int con = 0;
 		
 		for(int i = 0; i<num; i++) {
-			if(arr[i] == 0)	{
-				con = 0;
-				continue;
-			}
-			else {
-				if(i == 0)	con = 1;
-				else if(arr[i-1] == 1) {
-					con++;
-				} else con = 1;
-				
+			if(arr[i] == 1) {
+				con++;
 				score = score + con;
 			}
+			else con = 0;
 		}
 		
 		return score;
