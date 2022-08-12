@@ -7,50 +7,26 @@ public class Grating {
 	public int Solution(int num, int[][] arr) {
 
 		int max = Integer.MIN_VALUE;
-		int tmp = 0;
-
-		for (int i = 0; i < num; i++) {
-			for (int j = 0; j < num; j++) {
-				tmp = tmp + arr[i][j];
+		int sum1, sum2;
+		
+		for(int i =0; i<num; i++) {
+			sum1 = sum2 = 0;
+			for(int j=0; j<num; j++) {
+				sum1 = sum1 + arr[i][j];
+				sum2 = sum2 + arr[j][i];
 			}
-			if (tmp > max)
-				max = tmp;
-			tmp = 0;
+			max = Math.max(max, sum1);
+			max = Math.max(max, sum2);
 		}
 
-		for (int i = 0; i < num; i++) {
-			for (int j = 0; j < num; j++) {
-				tmp = tmp + arr[j][i];
-			}
-			if (tmp > max)
-				max = tmp;
-			tmp = 0;
+		sum1 = sum2 = 0;
+		for(int i = 0; i<num; i++) {
+			sum1 = sum1 + arr[i][i];
+			sum2 = sum2 + arr[i][num-i-1];
 		}
-
-		int j = 0;
-		int i = 0;
-
-		while (i < num) {
-			tmp = tmp + arr[i][j];
-			i++;
-			j++;
-		}
-		if (tmp > max) {
-			max = tmp;
-		}
-		tmp = 0;
-
-		i = num - 1;
-		j = 0;
-		while (j < num) {
-			tmp = tmp + arr[i][j];
-			i--;
-			j++;
-		}
-		if (tmp > max) {
-			max = tmp;
-		}
-
+		max = Math.max(max, sum1);
+		max = Math.max(max, sum2);
+		
 		return max;
 	}
 
