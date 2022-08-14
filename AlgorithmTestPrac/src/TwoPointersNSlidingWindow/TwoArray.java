@@ -8,40 +8,25 @@ public class TwoArray {
 	public ArrayList<Integer> Solution(int num1, int num2, int[] arr1, int[] arr2) {
 
 		ArrayList<Integer> answer = new ArrayList<Integer>();
-		int index = 0;
-		int last = 0;
-		int s = 0;
-		boolean flag = false;
-
-		for (int i = 0; i < num1; i++) {
-			answer.add(arr1[i]);
-			if (i == num1 - 1)
-				last = arr1[i];
+		int p1 = 0;
+		int p2 = 0;
+		
+		while(p1 < num1 && p2 < num2) {
+			if(arr1[p1] < arr2[p2])	answer.add(arr1[p1++]);
+			else	answer.add(arr2[p2++]);	
 		}
-
-		for (int i = 0; i < num2; i++) {
-			if (answer.get(index) == last && answer.get(index) < arr2[i]) {
-				s = i;
-				flag = true;
-				break;
-			}
-
-			if (answer.get(index) >= arr2[i]) {
-				answer.add(index, arr2[i]);
-			} else {
-				i--;
-			}
-			index++;
+		
+		while(p1 < num1) {
+			answer.add(arr1[p1++]);
 		}
-
-		if (flag) {
-			for (int k = s; k < num2; k++) {
-				answer.add(arr2[k]);
-			}
+		
+		while(p2 < num2) {
+			answer.add(arr2[p2++]);
 		}
+		
 		return answer;
+		
 	}
-
 	public static void main(String[] args) {
 
 		TwoArray main = new TwoArray();
