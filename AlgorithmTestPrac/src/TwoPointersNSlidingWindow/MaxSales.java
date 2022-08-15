@@ -15,12 +15,9 @@ public class MaxSales {
 		
 		tmpRes = max;
 		
-		for(int i = 1; i<num - (num2-1); i++) {
-			
-			tmpRes = tmpRes - arr[i-1] + arr[i+num2-1];
-			if(tmpRes > max) {
-				max = tmpRes;
-			} 
+		for(int i = num2; i< num; i++) {
+			tmpRes = tmpRes + arr[i] - arr[i-num2];
+			max = Math.max(max, tmpRes);
 		}
 		
 		return max;
