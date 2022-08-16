@@ -6,43 +6,23 @@ public class ConsecutiveNumber {
 	
 	public int Solution(int num1, int num2, int[] arr) {
 		
-		int index = 0;
-		int answer = 0;
-		int tmp = 0;
-		int ri = 0;
+		int answer=0;
+		int lt = 0;
+		int result = 0;
 		
-		while(tmp < num2) {
-			tmp = tmp + arr[index];
+		for(int rt =0; rt<num1; rt++) {
+			result = result + arr[rt];
 			
-			if(tmp < num2) {
-				index++;
-			}
-			
-			if(tmp == num2) {
-				break;
-			}
-		}
-		
-		while(index < num1) {
-			
-			if(tmp > num2) {
-				tmp = tmp - arr[ri++];
-			}
-			
-			else if(tmp < num2) {
-				index++;
-				if(index < num1) {
-				tmp = tmp + arr[index];
-				}
-			}
-			
-			else if(tmp == num2) {
+			if(result == num2) {
 				answer++;
-				index++;
-				if(index < num1) {
-				tmp = tmp + arr[index] - arr[ri];
+			}
+			while(result > num2) {
+				result = result - arr[lt];
+				lt++;
+				if(result == num2)	{
+					answer++;
+					break;
 				}
-				ri++;
 			}
 		}
 		
