@@ -7,14 +7,16 @@ public class ConsecutiveNaturalNum {
 	public int Solution(int n) {
 		int answer = 0;
 		int sum = 0;
+		int m = n/2 + 1;
+		
 		int li = 0;
 		
-		int[] arr = new int[n];
-		for(int i =1; i < n; i++) {
-			arr[i] = i;
+		int[] arr = new int[m];
+		for(int i =0; i < m; i++) {
+			arr[i] = i+1;
 		}
 		
-		for(int i = 1; i< n; i++) {
+		for(int i = 0; i< m; i++) {
 			sum = sum + arr[i];
 			
 			if(sum == n) {
