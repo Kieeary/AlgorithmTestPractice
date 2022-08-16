@@ -6,29 +6,14 @@ public class ConsecutiveNaturalNum {
 
 	public int Solution(int n) {
 		int answer = 0;
-		int sum = 0;
 		int m = n/2 + 1;
 		
-		int li = 0;
-		
-		int[] arr = new int[m];
-		for(int i =0; i < m; i++) {
-			arr[i] = i+1;
-		}
-		
-		for(int i = 0; i< m; i++) {
-			sum = sum + arr[i];
-			
-			if(sum == n) {
-				answer++;
+		for(int i = 2; i<m; i++) {
+			if(i%2 == 0) {
+				if(n%i == i/2 && (n/i - ((n%i)-1) > 0))	answer++;
 			}
-			while(sum > n) {
-				sum = sum - arr[li];
-				li++;
-				if(sum == n)	{
-					answer++;
-					break;
-				}
+			else {				
+				if((n%i == 0) && (n/i - (i/2) > 0)) answer++;
 			}
 		}
 		
