@@ -9,67 +9,20 @@ public class President {
 	public char Solution(int n, String votes) {
 
 		int max = 0;
-		int[] alp = new int[5];
 		char answer = ' ';
-		HashMap<Character, Integer> hash = new HashMap<Character, Integer>();
-
-		for (char i : votes.toCharArray()) {
-			switch (i) {
-
-			case 'A':
-				alp[0] = alp[0] + 1;
-				break;
-			case 'B':
-				alp[1] = alp[1] + 1;
-				break;
-			case 'C':
-				alp[2] = alp[2] + 1;
-				break;
-			case 'D':
-				alp[3] = alp[3] + 1;
-				break;
-			case 'E':
-				alp[4] = alp[4] + 1;
-				break;
-
-			default:
-				break;
-			}
-
-		}
-
-		for (int i = 0; i < 5; i++) {
-			switch (i) {
-
-			case 0:
-				hash.put('A', alp[i]);
-				break;
-			case 1:
-				hash.put('B', alp[i]);
-				break;
-			case 2:
-				hash.put('C', alp[i]);
-				break;
-			case 3:
-				hash.put('D', alp[i]);
-				break;
-			case 4:
-				hash.put('E', alp[i]);
-				break;
-
-			default:
-				break;
-			}
+		
+		HashMap<Character, Integer> hash = new HashMap<>();
+		
+		for(char x : votes.toCharArray()) {
+			hash.put(x, hash.getOrDefault(x, 0) + 1);
 		}
 		
-		for(Map.Entry<Character, Integer> pair : hash.entrySet()) {
-			if(pair.getValue() > max)	{
-				answer = pair.getKey();
-				max = pair.getValue();
+		for(char x : hash.keySet()) {
+			if(hash.get(x) > max)	{
+				max = hash.get(x);
+				answer = x;
 			}
-			
 		}
-
 		return answer;
 	}
 
