@@ -1,9 +1,6 @@
 package HashMap;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Anagram {
@@ -11,35 +8,22 @@ public class Anagram {
 	public String Solution(String str1, String str2) {
 
 		String answer = "YES";
-
-		HashMap<Character, Integer> map1 = new HashMap<>();
-		HashMap<Character, Integer> map2 = new HashMap<>();
-
-		for (char key : str1.toCharArray()) {
-			map1.put(key, map1.getOrDefault(key, 0) + 1);
+		HashMap<Character, Integer> map = new HashMap<>();
+		
+		for(char c : str1.toCharArray()) {
+			map.put(c, map.getOrDefault(c, 0) + 1);
 		}
-
-		for (char key : str2.toCharArray()) {
-			map2.put(key, map2.getOrDefault(key, 0) + 1);
-		}
-	
-		for (char key1 : map1.keySet()) {
-			if (!map2.containsKey(key1)) {
+		
+		for(char c : str2.toCharArray()) {
+			if(!map.containsKey(c) || map.get(c) == 0) {
 				answer = "NO";
-				return answer;
-			} else {
-				for (char key2 : map2.keySet()) {
-					if (key1 != key2)
-						continue;
-
-					else if (key1 == key2 && map2.get(key2) != map1.get(key1)) {
-						answer = "NO";
-						return answer;
-					}
-				}
+				return answer;	
 			}
-
+			else {
+				map.put(c, map.get(c) - 1); 
+			}
 		}
+		
 
 		return answer;
 	}
