@@ -14,25 +14,17 @@ public class MaxLength {
 		int cnt = 0;
 
 		for (rt = 0; rt < n; rt++) {
-			if (arr[rt] == 1) {
-				length = rt - lt + 1;
-				max = Math.max(max, length);
-			} else if (arr[rt] == 0) {
+			if (arr[rt] == 0)
 				cnt++;
-				if(cnt <= m)	{
-					length = rt - lt + 1;
-					max = Math.max(max, length);
-				} else {
-					while(cnt > m) {
-						if(arr[lt] == 0)	{
-							cnt--;
-							lt++;
-						} else lt++;
-					}
-					max = Math.max(max, length);
-				}
+			while (cnt > m) {
+				if (arr[lt] == 0)
+					cnt--;
+				lt++;
 			}
+			length = rt -lt + 1;
+			max = Math.max(max, length);
 		}
+
 		return max;
 	}
 
