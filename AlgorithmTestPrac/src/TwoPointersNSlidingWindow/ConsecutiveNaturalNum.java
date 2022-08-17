@@ -6,15 +6,13 @@ public class ConsecutiveNaturalNum {
 
 	public int Solution(int n) {
 		int answer = 0;
-		int m = n/2 + 1;
+		int cnt = 1;
+		n = n - cnt;
 		
-		for(int i = 2; i<m; i++) {
-			if(i%2 == 0) {
-				if(n%i == i/2 && (n/i - ((n%i)-1) > 0))	answer++;
-			}
-			else {				
-				if((n%i == 0) && (n/i - (i/2) > 0)) answer++;
-			}
+		while(n > 0) {
+			cnt++;
+			n = n -cnt;
+			if(n % cnt == 0) answer++;
 		}
 		
 		return answer;
