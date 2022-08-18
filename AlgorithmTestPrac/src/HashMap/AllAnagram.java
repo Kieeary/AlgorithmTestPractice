@@ -6,45 +6,34 @@ import java.util.Scanner;
 public class AllAnagram {
 	
 	public int Solution(String s, String t) {
-		
+			
 		int lt = 0;
 		int rt = 0;
-		int cnt = 0;
 		int answer = 0;
+		int length = t.length()-1;
 		
 		HashMap<Character, Integer> map = new HashMap<>();
-		HashMap<Character, Integer> test = new HashMap<>();
-				
+		HashMap<Character, Integer> com = new HashMap<>();
+		
 		for(char c : t.toCharArray()) {
 			map.put(c, map.getOrDefault(c, 0) + 1);
 		}
 		
-		test.putAll(map);
+		for(rt = 0; rt<length; rt++) {
+			com.put(s.charAt(rt), com.getOrDefault(s.charAt(rt), 0) + 1);
+		}
 		
-		for(lt = 0; lt < s.length() - t.length() + 1; lt++) {
-			int length = lt + t.length();
-			for(rt = lt; rt < length; rt++) {	
-				
-				if(!map.containsKey(s.charAt(rt))) {
-					break;
-				}
-				
-				else {
-					test.put(s.charAt(rt), test.get(s.charAt(rt)) - 1);
-					
-					if(test.get(s.charAt(rt)) == 0) {
-						cnt++;
-						
-						if(cnt == test.size())	answer++;
-					}
-					
-					else if(test.get(s.charAt(rt)) < 0)	break;
-				}
+		for(int i = rt; i<s.length(); i++) {
+			com.put(s.charAt(i), com.getOrDefault(s.charAt(i), 0) + 1);
+			
+			if(map.equals(com)) {
+				answer++;
 			}
 			
-			cnt = 0;
+			com.put(s.charAt(lt), com.get(s.charAt(lt)) - 1);
+			if(com.get(s.charAt(lt)) == 0)	com.remove(s.charAt(lt));
 			
-			test.putAll(map);
+			lt++;
 		}
 
 		return answer;
