@@ -1,32 +1,31 @@
 package HashMap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class SalesCategory {
 
-	public int[] Solution(int n, int m, int[] arr) {
+	public ArrayList<Integer> Solution(int n, int m, int[] arr) {
 
 		HashMap<Integer, Integer> map = new HashMap<>();
-		int[] answer = new int[n - m + 1];
-		int index = 1;
-
-		for (int i = 0; i < m; i++) {
-			map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+		ArrayList<Integer> answer = new ArrayList<>();
+		
+		int lt = 0;
+		int rt = 0;
+		
+		for(rt = 0; rt<m-1; rt++) {
+			map.put(arr[rt], map.getOrDefault(arr[rt], 0) + 1);
 		}
-
-		answer[0] = map.size();
-
-		while (index <= n - m) {
-			map.put(arr[index - 1], map.get(arr[index - 1]) - 1);
-
-			if (map.get(arr[index - 1]) == 0) {
-				map.remove(arr[index - 1]);
-			}
-
-			map.put(arr[index + (m - 1)], map.getOrDefault(arr[index + (m - 1)], 0) + 1);
-			answer[index] = map.size();
-			index++;
+		
+		for(int i = rt; rt<n; rt++) {
+			map.put(arr[rt], map.getOrDefault(arr[rt], 0) + 1);
+			answer.add(map.size());
+			
+			map.put(arr[lt], map.get(arr[lt])-1);
+			if(map.get(arr[lt]) == 0)	map.remove(arr[lt]);
+			
+			lt++;
 		}
 
 		return answer;
