@@ -8,18 +8,21 @@ public class Parenthesis {
 	public String Solution(String str) {
 		
 		Stack<Character> st = new Stack<>();
-		char[] arr = str.toCharArray();
 		String answer = "YES";
 		
-		for(int i = 0; i< arr.length; i++) {
-			if(arr[i] == '(')	st.add(arr[i]);
-			else if(arr[i] == ')')	{
-				if(!st.isEmpty())	st.pop();
-				else {
+		for(char c : str.toCharArray()) {
+			if(c == '(')	st.push(c);
+			else {
+				if(st.isEmpty()) {
 					answer = "NO";
 					return answer;
-				}
+				} else st.pop();
 			}
+		}
+		
+		if(!st.isEmpty())	{
+			answer = "NO";
+			return answer;
 		}
 		
 		return answer;
