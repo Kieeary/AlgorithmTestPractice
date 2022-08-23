@@ -1,47 +1,35 @@
 package HashMap;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class KthNumber {
 	
 	public int Solution(int n, int k, int[] arr) {
 		
-		ArrayList<Integer>answer = new ArrayList<>();
-		HashSet<Integer> ans = new HashSet<>();
-		
-		int lt = 0;
-		int mt = 0;
-		int rt = 0;
-		
+		TreeSet<Integer> Tset = new TreeSet<>(Collections.reverseOrder());
+
 		int kthNumber = 0;
 		
-		for(lt = 0; lt< n-2; lt++) {
-			for(mt= lt + 1; mt< n-1; mt++) {
-				for(rt = mt + 1; rt<n; rt++) {
-					int tmp = arr[lt] + arr[mt] + arr[rt];
-					if(ans.add(tmp)) {
-						answer.add(tmp);
-					}
+		for(int i = 0; i< n; i++) {
+			for(int j= i + 1; j< n; j++) {
+				for(int s = j + 1; s<n; s++) {
+					int tmp = arr[i] + arr[j] + arr[s];
+					Tset.add(tmp);
 				}
 			}
 		}
 		
-		int[] sortArr = new int[answer.size()];
-				
-		for(int i = 0; i<sortArr.length; i++) {
-			sortArr[i] = answer.get(i);
+		for(int i : Tset) {
+			kthNumber++;
+			if(kthNumber == k) {
+				return i;
+			}
 		}
 		
-		Arrays.sort(sortArr);
-		
-		if(sortArr.length > k) {
-			kthNumber = sortArr[sortArr.length - k];
-			return kthNumber;
-		}
-		else return -1;
+		return -1;
 	}
 
 	public static void main(String[] args) {
