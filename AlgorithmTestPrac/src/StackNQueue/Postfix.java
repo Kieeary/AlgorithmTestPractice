@@ -8,60 +8,30 @@ public class Postfix {
 	public int Solution(String postfix) {
 
 		int answer = 0;
-		int tmp = 0;
-		
-		int front = 0;
-		int rear = 0;
 
 		Stack<Integer> stack = new Stack<>();
 
 		for (char c : postfix.toCharArray()) {
-			if (c != '+' && c != '-' && c != '*' && c != '/') {
+			if (Character.isDigit(c)) {
 				int i = c - 48;
 				stack.push(i);
 			} else {
-				switch (c) {
 
-				case '+':
-					rear = stack.pop();
-					front = stack.pop();
-					tmp = front + rear;
-					//System.out.println("push할 정수: " + tmp);
-					stack.push(tmp);
-					break;
+				int rear = stack.pop();
+				int front = stack.pop();
 
-				case '-':
-					rear = stack.pop();
-					front = stack.pop();
-					tmp = front - rear;
-					//System.out.println("push할 정수: " + tmp);
-					stack.push(tmp);
-					break;
-
-				case '*':
-					rear = stack.pop();
-					front = stack.pop();
-					tmp = front * rear;
-					//System.out.println("push할 정수: " + tmp);
-					stack.push(tmp);
-					break;
-
-				case '/':
-					rear = stack.pop();
-					front = stack.pop();
-					tmp = front / rear;
-					//System.out.println("push할 정수: " + tmp);
-					stack.push(tmp);
-					break;
-
-				default:
-					break;
-
-				}
+				if (c == '+')
+					stack.push(front + rear);
+				else if (c == '-')
+					stack.push(front - rear);
+				else if (c == '*')
+					stack.push(front * rear);
+				else if (c == '/')
+					stack.push(front / rear);
 			}
 		}
-		
-		answer = stack.pop();
+
+		answer = stack.get(0);
 
 		return answer;
 	}
@@ -73,9 +43,9 @@ public class Postfix {
 
 		System.out.print("입력 : ");
 		String postfix = sc.next();
-		
+
 		System.out.print(main.Solution(postfix));
-		
+
 	}
 
 }
