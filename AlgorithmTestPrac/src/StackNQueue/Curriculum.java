@@ -8,49 +8,17 @@ public class Curriculum {
 	
 	public String Solution(String str1, String str2) {
 		
-		Queue<Character> Q = new LinkedList<>();
-		Queue<Character> Q2 = new LinkedList<>();
-		
-		int index = 0;
 		String answer = "YES";
 		
-		for(int i = 0; i<str2.length(); i++) {
-			Q2.offer(str2.charAt(i));
-		}
+		Queue<Character> Q = new LinkedList<>();
 		
-		for(char c : str1.toCharArray()) {
-			for(int i = index; i<str2.length(); i++) {
-				if(c == str2.charAt(i)) {
-					Q.offer(Q2.poll());
-					index++;
-					break;
-				}
-				else {
-					Q2.poll();
-					index = i + 1;
-				}
+		for(char c : str1.toCharArray())	Q.offer(c);
+		for(char c: str2.toCharArray()) {
+			if(Q.contains(c)) {
+				if(Q.poll() != c)	return "NO";	
 			}
 		}
-		
-		index = 0;
-		
-		if(Q.size() == str1.length()) {
-		while(index < str1.length() && !Q.isEmpty()) {
-			if(Q.peek() == str1.charAt(index))	{
-				Q.poll();
-				index = index+1;
-				continue;
-			}
-			else {
-				Q.poll();
-				answer = "NO";
-				return answer;
-			}
-		}
-		} else {
-			answer = "NO";
-			return answer;
-		}
+		if(!Q.isEmpty())	return "NO"; 
 		
 		return answer;
 	}
