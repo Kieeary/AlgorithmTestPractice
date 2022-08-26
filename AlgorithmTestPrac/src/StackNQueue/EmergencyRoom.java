@@ -1,44 +1,47 @@
 package StackNQueue;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
+class Person {
+	int id;
+	int priority;
+
+	public Person(int id, int priority) {
+		this.id = id;
+		this.priority = priority;
+	}
+}
+
 public class EmergencyRoom {
 
-	public int Solution(int N, int t, int M, ArrayList<Integer> ArrList, int[] arr) {
-
-		Queue<Integer> q = new LinkedList<>();
+	public int Solution(int N, int M, int[] arr) {
 
 		int answer = 0;
+		Queue<Person> Q = new LinkedList<>();
 
-		for (int i : ArrList) {
-			q.offer(i);
+		for (int i = 0; i < N; i++) {
+			Q.add(new Person(i, arr[i]));
 		}
 
-		while (true) {
-			for (int i = 0; i < arr.length; i++) {
-				if (q.contains(arr[i])) {
-					int tmp = q.poll();
-					for (int j = 1; j < ArrList.size(); j++) {
-						if (arr[i] < ArrList.get(j)) {
-							ArrList.remove(0);
-							ArrList.add(tmp);
-							q.offer(tmp);
-							break;
-						} else if (i != M && j == ArrList.size() - 1) {
-							answer++;
-							ArrList.remove(0);
-							
-						} else if (i == M && j == ArrList.size() - 1) {
-							answer++;
-							return answer;
-						}
-					}
-				} 
+		while (!Q.isEmpty()) {
+			Person tmp = Q.poll();
+			for (Person p : Q) {
+				if (tmp.priority < p.priority) {
+					Q.offer(tmp);
+					tmp = null;
+					break;
+				}
+			}
+			if (tmp != null) {
+				answer++;
+				if (tmp.id == M)
+					return answer;
 			}
 		}
+		return answer;
+
 	}
 
 	public static void main(String[] args) {
@@ -50,20 +53,14 @@ public class EmergencyRoom {
 		System.out.print("입력: ");
 		int N = sc.nextInt();
 		int M = sc.nextInt();
-		int t = 0;
 
 		int[] arr = new int[N];
-		ArrayList<Integer> ArrList = new ArrayList<>();
 
 		for (int i = 0; i < N; i++) {
 			arr[i] = sc.nextInt();
-			ArrList.add(arr[i]);
-			if (i == M)
-				t = arr[i];
-
 		}
 
-		System.out.print(main.Solution(N, t, M, ArrList, arr));
+		System.out.print(main.Solution(N, M, arr));
 
 	}
 
