@@ -7,17 +7,12 @@ public class DuplicateCheck {
 	
 	public char Solution(int[] arr) {
 		
-		ArrayList<Integer> al = new ArrayList<>();
 		char answer = 'U';
 		
-		for(int i =0; i<arr.length; i++) {
-			al.add(arr[i]);
-		}
-		
 		for(int i = 0; i<arr.length; i++) {
-			int tmp = al.get(0);
-			al.remove(0);
-			if(al.contains(tmp))	return 'D';
+			for(int j= i+1; j<arr.length; j++) {
+				if(arr[i] == arr[j])	return 'D';
+			}
 		}
 		
 		return answer;
