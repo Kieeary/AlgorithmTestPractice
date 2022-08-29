@@ -7,13 +7,14 @@ public class InsertSort {
 	public int[] Solution(int n, int[] arr) {
 		
 		for(int i = 1; i<n; i++) {
-			for(int j = 0; j<i; j++) {
-				if(arr[i] < arr[j]) {
-					int tmp = arr[j];
-					arr[j] = arr[i];
-					arr[i] = tmp;
-				}
+			int tmp = arr[i];
+			int j = 0;
+			for(j = i-1 ; j >= 0; j--) {
+				if(tmp < arr[j]) {
+					arr[j+1] = arr[j];
+				} else break;
 			}
+			arr[j+1] = tmp;
 		}
 		return arr;
 	}
