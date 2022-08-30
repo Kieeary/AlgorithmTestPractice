@@ -9,11 +9,7 @@ public class Mischief {
 	public ArrayList<Integer> Solution(int[] arr) {
 		
 		ArrayList<Integer> answer = new ArrayList<>();
-		int[] copy = new int[arr.length];
-		
-		for(int i =0; i<copy.length; i++) {
-			copy[i] = arr[i];
-		}
+		int[] copy = arr.clone();	
 		
 		Arrays.sort(arr);
 		
