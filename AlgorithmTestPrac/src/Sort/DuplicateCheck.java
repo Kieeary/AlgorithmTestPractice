@@ -1,25 +1,17 @@
 package Sort;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class DuplicateCheck {
 	
 	public char Solution(int[] arr) {
 		
-		HashMap<Integer, Integer> h = new HashMap<>();
 		char answer = 'U';
+		Arrays.sort(arr);
 		
-		for(int i = 0; i<arr.length; i++) {
-			h.put(arr[i], h.getOrDefault(arr[i], 0) + 1);
-
-		}
-		
-		for(int i =0; i<arr.length; i++) {
-			if(h.get(arr[i]) > 1) {
-				return 'D';
-			}
+		for(int i = 0; i<arr.length-1; i++) {
+			if(arr[i] == arr[i+1])	return 'D';
 		}
 		
 		return answer;
