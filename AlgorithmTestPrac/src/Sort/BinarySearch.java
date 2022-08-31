@@ -9,10 +9,13 @@ public class BinarySearch {
 
 		int lt = 0;
 		int rt = arr.length-1;
-		int tmpIdx = (rt - lt + 1)/2 ;
 		int answer = 0;
 
-		while (true) {
+		Arrays.sort(arr);
+		
+		while (lt<=rt) {
+			int tmpIdx = (lt+rt)/2;
+			
 			if (arr[tmpIdx] > m) {
 				rt = tmpIdx - 1;
 			} else if (arr[tmpIdx] < m) {
@@ -21,7 +24,6 @@ public class BinarySearch {
 				answer = tmpIdx + 1;
 				break;
 			}
-			tmpIdx = lt + (rt - lt + 1)/2;
 		}
 
 		return answer;
@@ -40,8 +42,6 @@ public class BinarySearch {
 		for (int i = 0; i < n; i++) {
 			arr[i] = sc.nextInt();
 		}
-
-		Arrays.sort(arr);
 
 		System.out.print(main.Solution(arr, m));
 	}
