@@ -1,0 +1,86 @@
+class Solution {
+    public String solution(int[] numbers, String hand) {
+        String answer = "";
+        
+        String[][] arr =  {{"1","2","3"},{"4","5","6"}, {"7","8","9"}, {"*" ,"0","#"}};
+        
+        int llp = 3; //왼쪽 손이 가리켜야 하는 배열의 왼쪽 인덱스
+        int lrp = 0; //왼쪽 손이 가리켜야 하는 배열의 오른쪽 인덱스
+        
+        int rlp = 3; //오른쪽 손이 가리켜야 하는 배열의 왼쪽 인덱스
+        int rrp = 2; //오른쪽 손이 가리켜야 하는 배열의 오른쪽 인덱스
+        
+        int lIdx = 0; // 가리켜야 하는 번호 위치의 왼쪽 인덱스
+        int rIdx = 0; // 가리켜야 하는 번호 위치의 오른쪽 인덱스
+        
+        for(int i =0; i<numbers.length; i++) {
+            for(int k = 0; k<3; k++) { // 내가 눌러야 하는 숫자의 이차원 배열 위치
+                for(int s = 0; s<4; s++) {
+                    if((s == 3 && k ==0) || (s == 3 && k ==2))  continue;
+                    int tmpN = Integer.parseInt(arr[s][k]);
+                    if(numbers[i] == tmpN) {
+                        lIdx = s;
+                        rIdx = k;
+                    }
+                }
+            }
+            
+            if(rIdx == 0)   {
+                answer = answer + "L";
+                llp = lIdx;
+                lrp = rIdx;
+                System.out.println("바뀐 왼손 인덱스: " + llp + " " + lrp);
+            }
+            else if(rIdx == 2) {
+                answer = answer + "R";
+                rlp = lIdx;
+                rrp = rIdx;
+                System.out.println("바뀐 오른손 인덱스: " + rlp + " " + rrp);
+
+            }
+            else if(rIdx == 1) {
+                int LtmpRIdx = Math.abs(rIdx - lrp);
+                int LtmpLIdx = Math.abs(lIdx - llp);
+                int Ltmp = LtmpRIdx + LtmpLIdx;
+                
+                int RtmpRIdx = Math.abs(rIdx - rrp);
+                int RtmpLIdx = Math.abs(lIdx - rlp);
+                int Rtmp = RtmpRIdx + RtmpLIdx;
+                
+              //  System.out.println("Ltmp, rTmp :" + Ltmp + " " + Rtmp);
+                
+                if(Ltmp > Rtmp) {
+                    answer = answer + "R";
+                    rlp = lIdx;
+                    rrp = rIdx;
+                    System.out.println("바뀐 오른손 인덱스: " + rlp + " " + rrp);
+
+                }
+                else if(Ltmp < Rtmp)    {
+                    answer = answer + "L";
+                    llp = lIdx;
+                    lrp = rIdx;
+                    System.out.println("바뀐 왼손 인덱스: " + llp + " " + lrp);
+
+                }
+                else if(Ltmp == Rtmp) {
+                   if(hand.equals("left"))    {
+                       answer = answer + "L";
+                        llp = lIdx;
+                        lrp = rIdx;
+                    System.out.println("바뀐 왼손 인덱스: " + llp + " " + lrp);
+
+                   }
+                    else {
+                        answer = answer + "R";
+                        rlp = lIdx;
+                        rrp = rIdx;
+                     System.out.println("바뀐 오른손 인덱스: " + rlp + " " + rrp);
+
+                    }
+        }
+            }
+        }
+        return answer;
+    }
+}
