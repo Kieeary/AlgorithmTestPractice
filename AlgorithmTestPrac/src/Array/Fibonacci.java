@@ -4,20 +4,12 @@ import java.util.Scanner;
 
 public class Fibonacci {
 
-	public void Solution(int num) {
-
-		int a = 1;
-		int b = 1;
+	public int Fibo(int num) {
 		
-		System.out.print(a + " "+ b + " ");
-		
-		for(int i = 2; i<num; i++) {
-			int c = a+b;
-			
-			System.out.print(c + " ");
-			
-			a = b;
-			b = c;
+		if(num == 1)	return 1;
+		else if(num == 2)	return 1;
+		else {
+			return Fibo(num-2) + Fibo(num-1);
 		}
 	}
 
@@ -29,7 +21,9 @@ public class Fibonacci {
 
 		System.out.print("입력:");
 		int num = sc.nextInt();
-		
-		main.Solution(num);
+
+		for(int i = 1; i<=num; i++) {
+			System.out.print(main.Fibo(i) + " ");
+		}
 	}
 }
