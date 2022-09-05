@@ -1,0 +1,42 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] id_list, String[] report, int k) {
+        int[] answer = new int[id_list.length];
+        
+        //HashSet을 이용해서 report에 있는 중복 제거
+        HashSet<String> hs = new HashSet<>();
+        for(String str : report) {
+            hs.add(str);
+        }
+        
+        //HashMap 이용해서 <신고받은 사람, 신고한 사람 리스트> 형식으로 key,value 저장
+        HashMap<String, ArrayList<String>> hm = new HashMap<>();
+        for(String str : hs) {
+            String[] spliter = str.split(" ");
+            
+            ArrayList<String> reporterList = hm.getOrDefault(spliter[1], null);
+            if(hm.get(spliter[1]) == null)  {
+                reporterList = new ArrayList<>();
+            }
+            
+            reporterList.add(spliter[0]);
+            hm.put(spliter[1], reporterList);
+        }
+        
+        HashMap<String, Integer> reporteeCnt = new HashMap<>();
+        for(ArrayList<String> list : hm.values()) {
+            if(list.size() >= k) {
+                for(int i =0; i<list.size(); i++) {
+                    reporteeCnt.put(list.get(i), reporteeCnt.getOrDefault(list.get(i), 0) + 1);
+                }
+            }
+        }
+        
+       for(int i = 0; i<id_list.length; i++) {
+           answer[i] = reporteeCnt.getOrDefault(id_list[i], 0);
+       }
+        
+        return answer;
+    }
+}
