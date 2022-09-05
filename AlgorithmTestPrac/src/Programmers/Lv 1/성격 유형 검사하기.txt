@@ -1,0 +1,44 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String[] survey, int[] choices) {
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        String answer = "";
+        
+// hashMap에 key, value값 초기화
+        hashMap.put('R', 0);
+        hashMap.put('T', 0);
+        hashMap.put('C', 0);
+        hashMap.put('F', 0);
+        hashMap.put('J', 0);
+        hashMap.put('M', 0);
+        hashMap.put('A', 0);
+        hashMap.put('N', 0);
+
+//survey 배열을 탐색하면서 점수 계산                
+        for(int i = 0; i < survey.length; i++) {
+            if(choices[i] > 4) {
+                hashMap.put(survey[i].charAt(1), hashMap.get(survey[i].charAt(1)) + choices[i] - 4);
+        
+            } else if(choices[i] < 4) {
+    
+                hashMap.put(survey[i].charAt(0), hashMap.get(survey[i].charAt(0)) + (4-choices[i]));
+            }
+	}
+
+// 서로 비교가 되는 문항 비교하면서 answer 추출        
+        if(hashMap.get('R') >= hashMap.get('T')) answer = answer+ "R";
+        else answer = answer+"T";
+        
+        if(hashMap.get('C') >= hashMap.get('F')) answer = answer + "C";
+        else answer = answer + "F";
+        
+        if(hashMap.get('J') >= hashMap.get('M')) answer = answer + "J";
+        else answer = answer + "M";
+        
+        if(hashMap.get('A') >= hashMap.get('N')) answer = answer + "A";
+        else answer = answer + "N";
+        
+        return answer;
+    }
+}
