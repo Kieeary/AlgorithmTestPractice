@@ -1,0 +1,60 @@
+class Solution {
+    public long solution(String s) {
+        int answer = 0;
+        String strAns = "";
+        String changeStr = "";
+        
+        for(char c : s.toCharArray()) {
+            if(Character.isDigit(c)) {
+                strAns += c;
+            } else {
+                changeStr += c;
+                
+                if(changeStr.equals("zero"))    {
+                    strAns += "0";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("one"))    {
+                    strAns += "1";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("two"))    {
+                    strAns += "2";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("three"))    {
+                    strAns += "3";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("four"))    {
+                    strAns += "4";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("five"))    {
+                    strAns += "5";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("six"))    {
+                    strAns += "6";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("seven"))    {
+                    strAns += "7";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("eight"))    {
+                    strAns += "8";
+                    changeStr = "";
+                }
+                else if(changeStr.equals("nine"))    {
+                    strAns += "9";
+                    changeStr = "";
+                }
+            }
+        }
+        
+        answer = Integer.parseInt(strAns);
+        
+        return answer;
+    }
+}
