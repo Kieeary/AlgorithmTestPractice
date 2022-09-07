@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] numbers) {
+        int answer = 0;
+        HashSet<Integer> hashSet = new HashSet<>();
+        
+        for(int i = 0; i<10; i++) {
+            hashSet.add(i);
+        }
+        
+        for(int i =0; i<numbers.length; i++) {
+            hashSet.remove(numbers[i]);
+        }
+        
+        for(int i : hashSet) {
+            answer += i;
+        }
+        
+        return answer;
+    }
+}
