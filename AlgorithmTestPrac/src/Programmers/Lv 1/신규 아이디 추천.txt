@@ -1,0 +1,67 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String new_id) {
+        String answer = "";
+        ArrayList<Character> list = new ArrayList<>();
+        
+        // 대문자를 소문자로 변경
+        answer = new_id.toLowerCase();
+        
+        for(char c : answer.toCharArray())  list.add(c);
+        answer = "";
+        
+        // 사용할 수 없는 문자 제거
+        Iterator<Character> it = list.iterator();
+        while(it.hasNext()) {
+            char c = it.next();
+            if(!((Character.isAlphabetic(c)) || (Character.isDigit(c)) || (c == '-' || c == '_' || c == '.')))  it.remove();
+        }
+        
+        // 2개이상의 . 을 하나로 치환
+        boolean flag = false;
+        it = list.iterator();
+        while(it.hasNext()) {
+            char c = it.next();
+            if(c == '.' && flag == true) it.remove();
+            else if(c == '.' && flag == false) flag = true;
+            else flag = false;
+        }
+        
+        // 처음 혹은 마지막이 . 인 경우에 제거
+        if(list.size() > 0) {
+             if(list.get(0) == '.')  list.remove(0);
+        }
+        
+        if(list.size() > 0) {
+             if(list.get(list.size() - 1) == '.')  list.remove(list.size()-1);
+        }
+        
+        // 빈 문자열일 경우 a 추가
+        if(list.size() == 0)    list.add('a');
+        
+        // 15자리 까지만 저장 && 마지막 문자가 . 이면 제거
+        it = list.iterator();
+        int n = 0;
+        while(it.hasNext()) {
+            char c = it.next();
+            n++;
+            if(n >15)   it.remove();
+        }
+        if(list.get(list.size()-1) == '.')  list.remove(list.size()-1);
+        
+        // 길이가 2자 이하라면 마지막 문자를 길이가 3이 될때까지 추가
+        if(list.size() <= 2) {
+            while(list.size() < 3) {
+                list.add(list.get(list.size()-1));
+            } 
+        }
+        
+        // 최종 답안
+        for(int i =0; i<list.size() ; i++) {
+            answer += list.get(i);
+        }
+        
+        return answer;
+    }
+}
