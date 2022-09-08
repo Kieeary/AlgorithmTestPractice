@@ -1,0 +1,19 @@
+class Solution {
+    public long solution(int price, int money, int count) {
+        long answer = 0;
+        long totalCost = 0;
+        
+        for(int i = 1; i <= count; i++) {
+            int tmpPrice = i * price;
+            totalCost += tmpPrice;
+        }
+        //System.out.println("total Cost :" + totalCost);
+        
+        if(money > totalCost)   return answer;
+        else {
+            answer = totalCost - money;
+        }
+        
+        return answer;
+    }
+}
