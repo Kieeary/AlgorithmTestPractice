@@ -3,41 +3,21 @@ class Solution {
         String[] answer = new String[arr1.length];
         String tmp ="";
         
-        String[] result1 = new String[arr1.length];
-        String[] result2 = new String[arr2.length];
+        String[] result = new String[arr1.length];
         
-        for(int i = 0; i<arr1.length; i++) {
-            tmp = "";
-            tmp += String.valueOf(arr1[i]);
-            
-        int a = Integer.parseInt(tmp);
-        String s = Integer.toBinaryString(a);
-        
-        while(s.length() < n) s = "0" + s;
-        
-        result1[i] = s;
-        
+        for(int i = 0; i<n; i++) {
+            int k = arr1[i] | arr2[i];
+            result[i] = Integer.toBinaryString(k);
         }
         
-        for(int i = 0; i<arr2.length; i++) {
+        for(int i =0; i<n; i++) {
             tmp = "";
-            tmp += String.valueOf(arr2[i]);
-            
-        int a = Integer.parseInt(tmp);
-        String s = Integer.toBinaryString(a);
-        
-        while(s.length() < n)  s = "0" + s;
-        
-        result2[i] = s;
-        
-        }
-        
-        for(int i = 0; i<result1.length; i++) {
-            answer[i] = "";
-            for(int j = 0; j<result1[i].length(); j++) {
-                if(result1[i].charAt(j) == '1' || result2[i].charAt(j) == '1')  answer[i] += "#";
-                else answer[i] += " ";
+            for(int j = 0; j<n; j++) {
+                if(result[i].length() < n)  result[i] = "0" + result[i];
+                if(result[i].charAt(j) == '1')    tmp += "#";
+                else tmp += " ";
             }
+            answer[i] = tmp;
         }
         
         return answer;
