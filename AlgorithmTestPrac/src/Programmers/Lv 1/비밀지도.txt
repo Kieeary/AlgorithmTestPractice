@@ -1,0 +1,45 @@
+class Solution {
+    public String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] answer = new String[arr1.length];
+        String tmp ="";
+        
+        String[] result1 = new String[arr1.length];
+        String[] result2 = new String[arr2.length];
+        
+        for(int i = 0; i<arr1.length; i++) {
+            tmp = "";
+            tmp += String.valueOf(arr1[i]);
+            
+        int a = Integer.parseInt(tmp);
+        String s = Integer.toBinaryString(a);
+        
+        while(s.length() < n) s = "0" + s;
+        
+        result1[i] = s;
+        
+        }
+        
+        for(int i = 0; i<arr2.length; i++) {
+            tmp = "";
+            tmp += String.valueOf(arr2[i]);
+            
+        int a = Integer.parseInt(tmp);
+        String s = Integer.toBinaryString(a);
+        
+        while(s.length() < n)  s = "0" + s;
+        
+        result2[i] = s;
+        
+        }
+        
+        for(int i = 0; i<result1.length; i++) {
+            answer[i] = "";
+            for(int j = 0; j<result1[i].length(); j++) {
+                if(result1[i].charAt(j) == '1' || result2[i].charAt(j) == '1')  answer[i] += "#";
+                else answer[i] += " ";
+            }
+        }
+        
+        return answer;
+    }
+}
