@@ -1,0 +1,30 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length];
+        
+        ArrayList<Integer> newArr = new ArrayList<>();
+        
+        // for(int i = 0; i<array.length; i++) {
+        //     newArr.add(array[i]);
+        // }
+        
+        for(int i =0; i<commands.length; i++) {
+            int ls = commands[i][0];
+            int rs = commands[i][1];
+            int target = commands[i][2];
+            
+            for(int k = ls; k <= rs; k++) {
+                newArr.add(array[k-1]);
+            }
+            
+            Collections.sort(newArr);
+            answer[i] = newArr.get(target-1);
+            
+            newArr.clear();
+        }
+                
+        return answer;
+    }
+}
