@@ -1,0 +1,16 @@
+class Solution {
+    public boolean solution(int x) {
+        boolean answer = true;
+        int tmp = x;
+        int cal = 0;
+   
+        while(tmp > 0) {
+            cal += (tmp % 10);
+            tmp /= 10;
+        }
+        
+        if((x % cal) != 0)  answer = false;
+        
+        return answer;
+    }
+}
