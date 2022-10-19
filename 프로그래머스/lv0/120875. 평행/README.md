@@ -1,10 +1,10 @@
 # [level 0] 평행 - 120875 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120875#qna) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120875) 
 
 ### 성능 요약
 
-메모리: 74.2 MB, 시간: 0.05 ms
+메모리: 74.4 MB, 시간: 8.14 ms
 
 ### 구분
 
