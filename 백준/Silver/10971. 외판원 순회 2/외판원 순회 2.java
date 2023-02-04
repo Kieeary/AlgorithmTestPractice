@@ -14,14 +14,15 @@ class Main {
     
     static void DFS(int lt, int L, int first, int sum) {
     	if(L == N) {
-    		int tmp = Integer.MAX_VALUE;
-    		for(int i =0; i<N; i++) {
-    			tmp = Math.min(tmp, arr[lt][first]);
+    		
+    		// 내가 출발한 경로로 다시 돌아갈 수 없는 경우 그냥 리턴
+    		if(arr[lt][first] == 0)	return;
+    		
+    		// 다시 돌아갈 수 있으면 총 순회 값을 더하여 기존의 순회 값과 비교하여 더 작은 값을 answer에 저장
+    		else {
+    			answer = Math.min(sum + arr[lt][first], answer);
+    			return;
     		}
-            if(tmp == 0)    return;
-    		sum += tmp;
-    		answer = Math.min(sum, answer);
-    		return;
     	} else {
     		for(int i = 0; i<N; i++) {
     			if(arr[lt][i] != 0 && ch[i] == 0) {
