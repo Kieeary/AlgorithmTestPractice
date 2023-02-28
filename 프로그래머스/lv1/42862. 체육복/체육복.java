@@ -17,13 +17,11 @@ class Info implements Comparable<Info> {
 
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
-        int answer = n;
-        int count = 0;
+        int answer = 0;
         ArrayList<Info> al = new ArrayList<>();
         
         for(int a : lost) {
             al.add(new Info(a, 'l'));
-            count--;
         }
         
         for(int a : reserve) {
@@ -32,26 +30,9 @@ class Solution {
         
         Collections.sort(al);
         
-        for(int i = 0; i<al.size(); i++) {
-            if(al.get(i).str == 'l') {
-                if(i < al.size()-1 && (al.get(i+1).num == al.get(i).num) && 
-                          al.get(i+1).str == 'r') {
-                    al.get(i+1).str = 'u';
-                    count++;
-                }
-                else if(i > 0 && (al.get(i-1).num + 1 == al.get(i).num) && al.get(i-1).str ==                             'r') {
-                    al.get(i-1).str = 'u';
-                    count++;
-                } else if(i < al.size()-1 && (al.get(i+1).num - 1 == al.get(i).num) && 
-                          al.get(i+1).str == 'r'){
-                    al.get(i+1).str = 'u';
-                    count++;
-                } else continue;
-            }
+        for(Info i : al) {
+            System.out.println(i.num + " " + i.str);
         }
- 
-        answer = answer + count;
-        
         return answer;
     }
 }
