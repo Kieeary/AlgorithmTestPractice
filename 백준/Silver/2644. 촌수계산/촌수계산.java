@@ -4,26 +4,16 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class Point10 {
-	int x;
-	int y;
-	
-	public Point10(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-}
-
 public class Main {
 	
 	static int N;
 	static int[][] arr;
-	static Queue<Point10> q = new LinkedList<>();
+	static Queue<Integer> q = new LinkedList<>();
 	static int answer = -1;
 
-	public static void BFS(int start, int target, int c, int cnt) {
+	public static void BFS(int target, int cnt) {
 		// 일촌 관계인 경우
-		if(c == target)	{
+		if(q.peek() == target)	{
 			cnt++;
 			answer = cnt;
 			return;
@@ -36,7 +26,7 @@ public class Main {
 				int len = q.size();
 			
 				for(int i = 0; i<len; i++) {
-					int idx1 = q.poll().y;
+					int idx1 = q.poll();
 					
 					for(int j = 1; j <= N; j++) {
 						
@@ -49,7 +39,7 @@ public class Main {
 								answer = cnt+1;
 								return;
 							} else {
-								q.add(new Point10(idx1, j));
+								q.add(j);
 							}
 						}
 					}
@@ -89,13 +79,12 @@ public class Main {
 				arr[start][i] = 0;
 				arr[i][start] = 0;
 				
-				q.add(new Point10(start, i));
-				BFS(start, target, i, cnt);
+				q.add(i);
+				BFS(target, cnt);
 			}
 		}
 		
 		System.out.println(answer);
 		
 	}
-
 }
